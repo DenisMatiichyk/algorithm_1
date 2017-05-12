@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,36 +34,53 @@ namespace algorithm_1
             Array.Sort(input);
 
             var outputUnique = input.Distinct().ToArray();
-            var outputRepeating = input.Where(str => input.Count(s => s == str) > 1).ToArray();
+            var outputRepeating = input.Where(str =>
+            {
+                int count = 0;
+                foreach (var s in input)
+                {
+                    if (s == str) count++;
+                }
+                return count > 1;
+            });
             var output_repeating_buffer = outputRepeating.ToList();
-            var output_unique_buffer = outputUnique.ToList();
+            // var output_unique_buffer = outputUnique.ToList();
             foreach (var item in outputUnique)
             {
-                for (int i = 0; i < output_repeating_buffer.Count; i++)
-                {
-                    if (item == output_repeating_buffer[i])
-                    {
-                        output_repeating_buffer.RemoveAt(i);
-                        // output_unique_buffer.Remove(item);
-                        break;
-                    }
-                }
+                // output_repeating_buffer =output_repeating_buffer.Except(outputUnique);
+                output_repeating_buffer.Remove(item);
+                //for (var i = 0; i < output_repeating_buffer.Count; i++)
+                //{
+                //    if (item == output_repeating_buffer[i])
+                //    {
+                //        output_repeating_buffer.RemoveAt(i);
+                //        break;
+                //    }
+                //}
 
             }
 
             var output = output_repeating_buffer.Concat(outputUnique).ToList();
 
+
+            var chunkLength = output.Count() / 2;
+            var cLength = output.Count();
+            var brother = Enumerable.Range(0, chunkLength)
+                .Select(i => output.Skip(i * chunkLength).Take(chunkLength)).ToArray();
+           
+             output.RemoveRange(0,chunkLength);
             var sister = output;
-            var brother = new List<double>();
-            for (int i = 0; i < output.Count / 2; i++)
-            {
-                brother.Add(sister[i]);
+            //Enumerable.Range(chunkLength, cLength)
+            // .Select(i => output.Skip(i * cLength).Take(cLength).ToArray());
 
-            }
-            sister.RemoveRange(0, output.Count / 2);
+            // sister = output.(brother);
+            //  brother.CopyTo(sister, brother.Length/2);
 
-            Console.WriteLine("Converted array:");
-            Console.WriteLine();
+            //Array.Copy(sister, brother, (output.Count() / 2));
+
+            //Array.Clear(sister,0, output.Count() / 2);
+            //Console.WriteLine("Converted array:");
+            //Console.WriteLine();
 
             //foreach (var item in output)
             //{
@@ -77,15 +95,15 @@ namespace algorithm_1
             //    Console.WriteLine(item);
             //}
             Console.ForegroundColor = ConsoleColor.Green;
-           
+
 
             if (outputUnique.Length <= output_repeating_buffer.Count())
 
                 Console.WriteLine("Sister has " + outputUnique.Length + " unique items");
             else
-                Console.WriteLine("Sister has " + outputUnique.Length + " unique items");
+                Console.WriteLine("Sister has " + sister.Count() + " unique items");
 
-            Console.ReadKey();
+            // Console.ReadKey();
         }
     }
 }
