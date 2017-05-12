@@ -3,3 +3,4 @@ E:\C#\desktop\algorithm_1\algorithm_1\bin\Debug\algorithm_1.exe
 E:\C#\desktop\algorithm_1\algorithm_1\bin\Debug\algorithm_1.pdb
 E:\C#\desktop\algorithm_1\algorithm_1\obj\Debug\algorithm_1.exe
 E:\C#\desktop\algorithm_1\algorithm_1\obj\Debug\algorithm_1.pdb
+E:\C#\desktop\algorithm_1\algorithm_1\obj\Debug\algorithm_1.csprojResolveAssemblyReference.cache

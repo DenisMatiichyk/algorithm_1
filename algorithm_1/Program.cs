@@ -24,10 +24,10 @@ namespace algorithm_1
             Console.WriteLine("Input Data:");
             Console.WriteLine("");
 
-            foreach (var item in input)
-            {
-                Console.WriteLine(item);
-            }
+            //foreach (var item in input)
+            //{
+            //    Console.WriteLine(item);
+            //}
             Console.WriteLine("");
 
             Array.Sort(input);
@@ -49,7 +49,7 @@ namespace algorithm_1
                 }
 
             }
-            
+
             var output = output_repeating_buffer.Concat(outputUnique).ToList();
 
             var sister = output;
@@ -64,20 +64,27 @@ namespace algorithm_1
             Console.WriteLine("Converted array:");
             Console.WriteLine();
 
-            foreach (var item in output)
-            {
-                Console.WriteLine(item);
-            }
+            //foreach (var item in output)
+            //{
+            //    Console.WriteLine(item);
+            //}
             Console.WriteLine();
 
             Console.WriteLine("Answer:");
             Console.WriteLine("Sister`s item array:");
-            foreach (var item in sister)
-            {
-                Console.WriteLine(item);
-            }
+            //foreach (var item in sister)
+            //{
+            //    Console.WriteLine(item);
+            //}
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Sister has " + sister.Count + " unique items");
+           
+
+            if (outputUnique.Length <= output_repeating_buffer.Count())
+
+                Console.WriteLine("Sister has " + outputUnique.Length + " unique items");
+            else
+                Console.WriteLine("Sister has " + outputUnique.Length + " unique items");
+
             Console.ReadKey();
         }
     }
